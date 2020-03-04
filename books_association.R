@@ -1,0 +1,8 @@
+library(arules)
+library(arulesViz)
+book <- read.csv(file.choose())
+summary(book)
+books_rules<-apriori(as.matrix(book),parameter = list(support = 0.02,confidence = 0.5,minlen=5))
+plot(books_rules,method="scatterplot")
+plot(books_rules,method = "grouped")
+plot(books_rules,method = "graph")

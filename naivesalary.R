@@ -1,0 +1,11 @@
+salary <- rbind(SalaryData_Test,SalaryData_Train)
+library(e1071)
+library(naivebayes)
+library(caret)
+library(psych)
+str(SalaryData_Train)
+Model <- naiveBayes(SalaryData_Train$Salary ~ ., data = SalaryData_Train, laplace=6)
+Model
+Model_pred <- predict(Model,SalaryData_Test)
+mean(Model_pred==SalaryData_Test$Salary)
+confusionMatrix(Model_pred,SalaryData_Test$Salary)
